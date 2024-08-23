@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Title Comparator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            width: 50%;
+        }
+        .input-box {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 40px; /* Added more margin between input boxes */
+        }
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Added border radius for a cleaner look */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px; /* Pushed the button lower */
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result-box {
+            margin-top: 30px; /* Increased margin for better spacing */
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Compare Game Titles</h1>
+    <form action="/compare" method="post">
+        <div class="input-box">
+            <label for="first_input">First Set of Titles (comma-separated):</label>
+            <textarea name="first_input" id="first_input">{{ first_input if first_input else '' }}</textarea>
+        </div>
+
+        <div class="input-box">
+            <label for="second_input">Second Set of Titles (comma-separated):</label>
+            <textarea name="second_input" id="second_input">{{ second_input if second_input else '' }}</textarea>
+        </div>
+
+        <button type="submit">Compare</button>
+    </form>
+
+    {% if result %}
+    <div class="result-box">
+        <h3>Titles in the first set but not in the second:</h3>
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
